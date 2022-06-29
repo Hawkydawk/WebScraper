@@ -30,21 +30,21 @@ for i in range(688):
     # print(list1.find_next_siblings("li"))
     sentList = soup.find_all("li", attrs={"class":"dotline"})
     #len(sentList)
-    i = 1
+    j = 1
     for sent in sentList:
-        flagN = ("@%d@" %i)
+        flagN = ("@%d@" %j)
         sentLine = flagN + sent.a.get_text()
-        if " in a sentence" in sentLine:
-            sentLine = sentLine.strip(" in a sentence")
-        else:
-            continue
+        # if " in a sentence" in sentLine:
+        #     sentLine = sentLine.strip(" in a sentence")
+        # else:
+        #     continue
         link = 'https://sentencedict.com'+sent.a["href"]
         f=open("sentenceEx_1.txt", 'a')
         f.write(sentLine + '\t' + link + '\n')
 
         #URL을 link로 바꿔서 전체를 새 파일(파일명= sentLine)에 저장
         
-        i += 1
+        j += 1
 
     f.close()
 
