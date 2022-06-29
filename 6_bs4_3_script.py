@@ -27,10 +27,10 @@ soup = BeautifulSoup(res.text, "lxml") #가져온 text를 lxml을 써서 Beautif
 # list4=list3.find_next_sibling("li")
 # print(list4.a.get_text())
 # print(list1.find_next_siblings("li"))
-sentList = soup.find_all("li")
+sentList = soup.find_all("script")
 #len(sentList)
 #print(soup.h1.get_text())
-fileName = 'grammar_3.txt'
+fileName = 'grammar_4.txt'
 fileTitle = soup.h1.get_text()
 fileNew = open(fileName, 'w')
 fileNew.write(fileTitle+'\t'+url+'\n')

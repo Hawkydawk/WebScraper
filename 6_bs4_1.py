@@ -7,7 +7,7 @@ from argparse import FileType
 from gettext import find
 
 
-for i in range(688):
+for i in range(689):
     urlParts = ("https://sentencedict.com/word/list_%d.html" %(i+1))
     
     url = urlParts
@@ -27,16 +27,30 @@ for i in range(688):
         # else:
         #     continue
         link = 'https://sentencedict.com'+sent.a["href"]
-        f=open("sentenceEx_1.txt", 'a')
+        f=open("sentenceEx_1.txt", 'a', encoding='UTF-8')
         f.write(sentLine + '\t' + link + '\n')
         j += 1
         
-        #URL을 link로 바꿔서 전체를 새 파일(파일명= sentLine)에 저장
+        #URL을 link로 바꿔서 전체를 새 파일(파일명= sentLine)에 저장 (url, res, soup, sent, sentLine, f)
         
+        urlLink = link
+        resLink = requests.get(urlLink)
+        resLink.raise_for_status()
+
+        soupLink = BeautifulSoup(resLink.text, 'lxml')
+
+        titleDiv = soupLink.find("div", attrs={"class":"title"})
+        titleText = titleDiv.h2.get_text()
+        fileT = open("sentenceIn_1.txt", 'a', encoding='UTF-8')
+        fileT.write("@"+titleText+"@"+'\n')
+        fileT.close()
         
-
-
-
+        sentenceBlock = soupLink.find("div", attrs={"id":"all"})
+        for sentLink in sentenceBlock:
+            sentLineLink = sentLink.get_text()
+            fLink = open("sentenceIn_1.txt", "a", encoding='UTF-8')
+            fLink.write(sentLineLink+"\n")
+            fLink.close()
 
     f.close()
 
