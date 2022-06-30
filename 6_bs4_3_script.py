@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import re
 
 
-url = "http://a4esl.org/q/h/mc006-ck.html"
+url = "http://a4esl.org/q/j/ni/fb-prepositions.html"
 res = requests.get(url)
 res.raise_for_status()
 
@@ -28,10 +28,10 @@ soup = BeautifulSoup(res.text, "lxml") #가져온 text를 lxml을 써서 Beautif
 # print(list4.a.get_text())
 # print(list1.find_next_siblings("li"))
 sentList = soup.find_all("script")
-#len(sentList)
-#print(soup.h1.get_text())
-fileName = 'grammar_4.txt'
-fileTitle = soup.h1.get_text()
+# len(sentList)
+# print(sentList)
+fileName = 'grammar21.txt'
+fileTitle = soup.script.get_text()
 fileNew = open(fileName, 'w')
 fileNew.write(fileTitle+'\t'+url+'\n')
 fileNew.close()
@@ -42,5 +42,3 @@ for sent in sentList:
     f.write(sentLine+'\n')
 
 f.close()
-
-

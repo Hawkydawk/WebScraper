@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import re
 
 
-url = "http://a4esl.org/q/h/mc006-ck.html"
+url = "http://a4esl.org/q/h/vm/plurals.html"
 res = requests.get(url)
 res.raise_for_status()
 
@@ -30,7 +30,7 @@ soup = BeautifulSoup(res.text, "lxml") #가져온 text를 lxml을 써서 Beautif
 sentList = soup.find_all("li")
 #len(sentList)
 #print(soup.h1.get_text())
-fileName = 'grammar_3.txt'
+fileName = 'grammar_19.txt'
 fileTitle = soup.h1.get_text()
 fileNew = open(fileName, 'w')
 fileNew.write(fileTitle+'\t'+url+'\n')
