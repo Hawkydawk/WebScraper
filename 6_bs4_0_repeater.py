@@ -29,17 +29,19 @@ soup = BeautifulSoup(res.text, "lxml") #가져온 text를 lxml을 써서 Beautif
 sentList = soup.find_all("li")
 #len(sentList)
 #print(soup.h1.get_text())
-fileName = 'grammar_19.txt'
-fileTitle = soup.h1.get_text()
-fileNew = open(fileName, 'w')
-fileNew.write(fileTitle+'\t'+url+'\n')
-fileNew.close()
 
-for sent in sentList:
-    sentLine = sent.get_text()
-    f=open(fileName, 'a')
-    f.write(sentLine+'\n')
 
-f.close()
+# fileName = 'grammar_19.txt'
+# fileTitle = soup.h1.get_text()
+# fileNew = open(fileName, 'w')
+# fileNew.write(fileTitle+'\t'+url+'\n')
+# fileNew.close()
+
+# for sent in sentList:
+#     sentLine = sent.get_text()
+#     f=open(fileName, 'a')
+#     f.write(sentLine+'\n')
+
+# f.close()
 
 
