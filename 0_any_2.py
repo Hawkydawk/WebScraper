@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import re
 
-url = "http://a4esl.org/a/g3.html"
+url = "http://a4esl.org/a/g5.html"
 req = requests.get(url)
 req.raise_for_status()
 
@@ -31,6 +31,9 @@ for list in li_tag:
         fileName = fileName.replace("'", "_")
         fileName = fileName.replace("?","+")
         fileName = fileName.replace('"', '_')
+        fileName = fileName.replace('...', '')
+        fileName = fileName.replace('vs.', 'vs')
+        fileName = fileName.replace(': ', ' - ')
         fileNew = open(fileName, 'w', encoding='UTF-8')
         fileNew.write('@@'+ttText+'\t'+li_URL+'\n')
         fileNew.close()
@@ -51,6 +54,9 @@ for list in li_tag:
         fileName = fileName.replace("'", "_")
         fileName = fileName.replace("?","+")
         fileName = fileName.replace('"', '_')
+        fileName = fileName.replace('...', '')
+        fileName = fileName.replace('vs.', 'vs')
+        fileName = fileName.replace(': ', ' - ')
         fileNew = open(fileName, 'w', encoding='UTF-8')
         fileNew.write('@@'+ttText+'\t'+li_URL+'\n')
         fileNew.close()
@@ -61,30 +67,20 @@ for list in li_tag:
             f.write(sentLine+'\n')
         f.close()
 
-# 아래 or(|)에 오류 있음.
-    # elif "Flash"|"HTML"|"JavaScript" in ttText:
-    #     li_req = requests.get(li_URL)
-    #     li_req.raise_for_status()
-    #     li_bs = BeautifulSoup(li_req.text, 'lxml')
-    #     li_sentList = li_bs.find_all("script")
+    elif "Flash" and "HTML" and "JavaScript" not in ttText:
+        li_req = requests.get(li_URL)
+        li_req.raise_for_status()
+        li_bs = BeautifulSoup(li_req.text, 'lxml')
+        li_sentList = li_bs.find_all("script")
 
-    #     fileName = str(int1)+"@@"+aText+".txt"
-    #     fileName = fileName.replace("'", "_")
-    #     fileName = fileName.replace("?","+")
-    #     fileName = fileName.replace('"', '_')
-    #     fileNew = open(fileName, 'w', encoding='UTF-8')
-    #     fileNew.write('@@'+ttText+'\t'+li_URL+'\n')
-    #     fileNew.close()
+        fileName = str(int1)+"@@"+aText+".txt"
+        fileName = fileName.replace("'", "_")
+        fileName = fileName.replace("?","+")
+        fileName = fileName.replace('"', '_')
+        fileName = fileName.replace('...', '')
+        fileName = fileName.replace('vs.', 'vs')
+        fileName = fileName.replace(': ', ' - ')
+        fileNew = open(fileName, 'w', encoding='UTF-8')
+        fileNew.write('@@'+ttText+'\t'+li_URL+'\n')
+        fileNew.close()
 
-        
-    
-    
-
-
-
-
-
-
-# file1 = open("any_2.txt", 'w')
-# file1.write(body_tag)
-# file1.close()
